@@ -1,3 +1,7 @@
+interface UserId {
+  uuid: string;
+}
+
 interface UserName {
   title: string;
   first: string;
@@ -15,6 +19,7 @@ interface UserLocation {
 }
 
 export interface User {
+  login: UserId;
   name: UserName;
   gender: 'male' | 'female';
   email: string;

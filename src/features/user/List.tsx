@@ -1,9 +1,23 @@
 import React from 'react';
-import { DataTable } from '../../ui/table';
+import { Column, DataTable } from '../../ui/table';
 import { useFetchUsers } from './api';
+
+const columns: Column[] = [
+  { field: 'id', headerName: 'ID' },
+  { field: 'name', headerName: 'Név', flex: 2 },
+];
 
 export const List = () => {
   const { users, isLoading } = useFetchUsers({ page: 1 });
 
-  return <DataTable columns={[]}></DataTable>;
+  const rows = users.map((user) => ({
+    id: user.login.uuid,
+    name: `${user.name.title} ${user.name.first} ${user.name.last}`,
+  }));
+
+  if (isLoading) {
+    return <p>Töltés...</p>;
+  }
+
+  return <DataTable columns={columns} rows={rows}></DataTable>;
 };
