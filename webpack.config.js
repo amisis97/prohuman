@@ -20,9 +20,23 @@ module.exports = {
                 use: 'ts-loader',
             },
             {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
-            },
+                test: /\.s?css$/,
+                oneOf: [{
+                        test: /\.module\.s?css$/,
+                        use: [
+                            MiniCssExtractPlugin.loader,
+                            {
+                                loader: "css-loader",
+                                options: { modules: true }
+                            },
+                            "sass-loader"
+                        ]
+                    },
+                    {
+                        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+                    }
+                ]
+            }
         ]
     },
     devtool: prod ? undefined : 'source-map',
