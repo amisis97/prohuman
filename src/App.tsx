@@ -1,11 +1,13 @@
 import React from 'react';
+import { UserList } from './features/user';
 
-interface AppProps {
-  name: string;
-}
-
-const App = ({ name }: AppProps) => {
-  return <div>FINISH!! {name}</div>;
+const App = () => {
+  return (
+    <section>
+      <h1>Users</h1>
+      <UserList />
+    </section>
+  );
 };
 
 export default App;

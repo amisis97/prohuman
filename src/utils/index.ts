@@ -1,0 +1,1 @@
+export { hasPrime } from './hasPrime';
