@@ -6,7 +6,10 @@
     "scripts": {
         "start": "webpack serve --port 3000",
         "build": "NODE_ENV=production webpack",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint 'src/**/*.{js,jsx,ts,tsx,json}'",
+        "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
+        "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
     },
     "repository": {
         "type": "git",
@@ -30,9 +33,13 @@
         "babel-loader": "^9.1.2",
         "css-loader": "^6.7.3",
         "eslint": "^8.32.0",
+        "eslint-config-prettier": "^8.6.0",
+        "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.32.1",
+        "eslint-plugin-react-hooks": "^4.6.0",
         "html-webpack-plugin": "^5.5.0",
         "mini-css-extract-plugin": "^2.7.2",
+        "prettier": "^2.8.3",
         "ts-loader": "^9.4.2",
         "typescript": "^4.9.4",
         "webpack": "^5.75.0",
