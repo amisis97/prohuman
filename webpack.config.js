@@ -1,36 +1,34 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const prod = process.env.NODE_ENV === 'production';
 
-module.exports = (env) => ({
-    entry: './index.js',
-    mode: 'development',
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+    mode: prod ? 'production' : 'development',
+    entry: './src/index.ts',
     output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'index_bundle.js',
-    },
-    target: 'web',
-    devServer: {
-        port: env.port || '3000',
-        static: {
-            directory: path.join(__dirname, 'public')
-        },
-        open: true,
-        hot: true,
-        liveReload: true,
-    },
-    resolve: {
-        extensions: ['.js', '.jsx', '.json'],
+        path: __dirname + '/dist/',
     },
     module: {
         rules: [{
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: 'babel-loader',
-        }, ],
+                test: /\.(ts|tsx)$/,
+                exclude: /node_modules/,
+                resolve: {
+                    extensions: ['.ts', '.tsx', '.js', '.json'],
+                },
+                use: 'ts-loader',
+            },
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            },
+        ]
     },
+    devtool: prod ? undefined : 'source-map',
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'public', 'index.html')
-        })
-    ]
-});
+            template: './public/index.html',
+        }),
+        new MiniCssExtractPlugin(),
+    ],
+};
