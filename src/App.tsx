@@ -4,7 +4,7 @@ import { UserList } from './features/user';
 const App = () => {
   return (
     <section>
-      <h1>Users</h1>
+      <h1>Random felhasználók</h1>
       <UserList />
     </section>
   );

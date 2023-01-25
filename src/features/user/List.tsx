@@ -39,10 +39,6 @@ export const List = () => {
     [users],
   );
 
-  if (users.length === 0) {
-    return <p>Nincs találat!</p>;
-  }
-
   return (
     <div>
       <h3>Szűrők</h3>
@@ -53,8 +49,14 @@ export const List = () => {
         label='Neme:'
         onChange={(event) => setSelectedGender(event.target.value)}
       />
-      <DataTable columns={columns} rows={rows} />
-      <Pagination page={page} allPage={Math.ceil(recordCount / PAGE_SIZE)} onChange={setPage} />
+      {users.length > 0 ? (
+        <>
+          <DataTable columns={columns} rows={rows} />
+          <Pagination page={page} allPage={Math.ceil(recordCount / PAGE_SIZE)} onChange={setPage} />
+        </>
+      ) : (
+        <p>Nincs találat!</p>
+      )}
     </div>
   );
 };
