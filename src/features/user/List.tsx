@@ -41,22 +41,30 @@ export const List = () => {
 
   return (
     <div>
-      <h3>Szűrők</h3>
-      <Select
-        name='gender'
-        value={selectedGender}
-        options={GENDER_OPTIONS}
-        label='Neme:'
-        onChange={(event) => setSelectedGender(event.target.value)}
-      />
-      {users.length > 0 ? (
-        <>
-          <DataTable columns={columns} rows={rows} />
-          <Pagination page={page} allPage={Math.ceil(recordCount / PAGE_SIZE)} onChange={setPage} />
-        </>
-      ) : (
-        <p>Nincs találat!</p>
-      )}
+      <div className='content-box'>
+        <h3>Szűrők</h3>
+        <Select
+          name='gender'
+          value={selectedGender}
+          options={GENDER_OPTIONS}
+          label='Neme:'
+          onChange={(event) => setSelectedGender(event.target.value)}
+        />
+      </div>
+      <div className='content-box'>
+        {users.length > 0 ? (
+          <>
+            <DataTable columns={columns} rows={rows} />
+            <Pagination
+              page={page}
+              allPage={Math.ceil(recordCount / PAGE_SIZE)}
+              onChange={setPage}
+            />
+          </>
+        ) : (
+          <p>Nincs találat!</p>
+        )}
+      </div>
     </div>
   );
 };

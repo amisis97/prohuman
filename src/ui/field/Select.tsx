@@ -1,5 +1,5 @@
 import React, { useId } from 'react';
-import styles from './Select.module.scss';
+import styles from './Field.module.scss';
 
 interface SelectProps {
   id?: string;
@@ -15,7 +15,7 @@ export const Select = ({ id, label, name, value, options, onChange }: SelectProp
   const elementId = id ?? generatedId;
 
   return (
-    <div className={styles.select}>
+    <div className={styles.field}>
       {!!label && <label htmlFor={elementId}>{label}</label>}
 
       <select name={name} id={elementId} onChange={onChange} value={value}>

@@ -1,0 +1,14 @@
+.field {
+    display: inline-flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 300px;
+    label {
+        font-weight: bold;
+    }
+    select {
+        height: 2rem;
+        width: 100%;
+    }
+}

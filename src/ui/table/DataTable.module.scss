@@ -1,3 +1,4 @@
+$border: 1px solid black;
 .row {
     display: flex;
     @for $i from 1 through 3 {
@@ -5,4 +6,25 @@
             flex: $i;
         }
     }
+    .cell {
+        padding: 10px;
+        border-right: $border;
+        border-bottom: $border;
+        &:first-of-type {
+            border-left: $border;
+        }
+    }
+}
+
+.row:first-of-type {
+    .cell {
+        font-weight: bold;
+        text-transform: uppercase;
+        border-top: $border;
+    }
+}
+
+.row:not(:first-of-type):hover {
+    background-color: #999;
+    color: white;
 }

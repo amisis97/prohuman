@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './DataTable.module.scss';
 import { Column } from './model';
+import classNames from 'classnames';
 
 interface TableProps {
   idField?: string;
@@ -13,7 +14,7 @@ export const DataTable = ({ idField = 'id', columns, rows }: TableProps) => {
     <div>
       <div className={styles.row}>
         {columns.map(({ field, headerName, flex = 1 }) => (
-          <div key={field} className={styles[`flex-${flex}`]}>
+          <div key={field} className={classNames(styles[`flex-${flex}`], styles.cell)}>
             {headerName ?? field}
           </div>
         ))}
@@ -21,7 +22,7 @@ export const DataTable = ({ idField = 'id', columns, rows }: TableProps) => {
       {rows.map((row) => (
         <div key={row[idField] as string} className={styles.row}>
           {columns.map(({ field, flex = 1 }) => (
-            <div className={styles[`flex-${flex}`]} key={field}>
+            <div className={classNames(styles[`flex-${flex}`], styles.cell)} key={field}>
               {row[field] as string}
             </div>
           ))}

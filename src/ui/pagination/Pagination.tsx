@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import styles from './Pagination.module.scss';
 
 interface PaginationProps {
   page: number;
@@ -16,10 +17,11 @@ export const Pagination = ({ page, allPage, onChange }: PaginationProps) => {
   }, [onChange, page]);
 
   return (
-    <div>
+    <div className={styles.pagination}>
       <button disabled={page < 2} onClick={handlePrevClick}>
         Előző
       </button>
+      <span>{`${page} / ${allPage}`}</span>
       <button disabled={page >= allPage} onClick={handleNextClick}>
         Következő
       </button>
