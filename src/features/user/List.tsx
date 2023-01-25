@@ -11,7 +11,8 @@ const GENDER_OPTIONS: Option[] = [
 
 const columns: Column[] = [
   { field: 'id', headerName: 'ID' },
-  { field: 'name', headerName: 'Név', flex: 2 },
+  { field: 'name', headerName: 'Név', flex: 1 },
+  { field: 'address', headerName: 'Cím', flex: 2 },
 ];
 
 const PAGE_SIZE = 10;
@@ -31,6 +32,7 @@ export const List = () => {
   const rows = users.map((user) => ({
     id: user.login.uuid,
     name: `${user.name.title} ${user.name.first} ${user.name.last}`,
+    address: `${user.location.postcode}, ${user.location.country} ${user.location.city}`,
   }));
 
   if (users.length === 0) {
