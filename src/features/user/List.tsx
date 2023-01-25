@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Option, Select } from '../../ui/field';
 import { Pagination } from '../../ui/pagination';
 import { Column, DataTable } from '../../ui/table';
@@ -29,11 +29,15 @@ export const List = () => {
     setPage(1);
   }, [selectedGender]);
 
-  const rows = users.map((user) => ({
-    id: user.login.uuid,
-    name: `${user.name.title} ${user.name.first} ${user.name.last}`,
-    address: `${user.location.postcode}, ${user.location.country} ${user.location.city}`,
-  }));
+  const rows = useMemo(
+    () =>
+      users.map((user) => ({
+        id: user.login.uuid,
+        name: `${user.name.title} ${user.name.first} ${user.name.last}`,
+        address: `${user.location.postcode}, ${user.location.country} ${user.location.city}`,
+      })),
+    [users],
+  );
 
   if (users.length === 0) {
     return <p>Nincs találat!</p>;
