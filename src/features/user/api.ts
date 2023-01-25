@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { hasPrime } from '../../utils';
+import { hasMinTwoPrime } from '../../utils';
 import { API_URL } from './consts';
 import { Response, User } from './model';
 
@@ -32,7 +32,7 @@ const useFetchUsers = (gender?: string) => {
   const { results: users } = response;
 
   const filteredUsers = useMemo(
-    () => users.filter((user) => hasPrime(user.location.postcode)),
+    () => users.filter((user) => hasMinTwoPrime(user.location.postcode)),
     [users],
   );
 

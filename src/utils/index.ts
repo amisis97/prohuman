@@ -1,1 +1,1 @@
-export { hasPrime } from './hasPrime';
+export { hasMinTwoPrime } from './hasMinTwoPrime';
